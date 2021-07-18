@@ -1,0 +1,20 @@
+{
+    "name": "chyvel/myblog",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Anatoly Chyvel",
+            "email": "anatoly.chyvel@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MyProject\\": "src/MyProject/"
+        }
+    },
+    "require": {
+        "erusev/parsedown": "^1.7",
+        "vlucas/phpdotenv": "^5.3"
+    }
+}

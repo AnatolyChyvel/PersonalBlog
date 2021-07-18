@@ -1,0 +1,310 @@
+/* main block */
+
+body {
+  padding: 0;
+  margin: 0;
+  color: #000;
+  font-size: 16px;
+  background-color: #e8e8e8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+ul, li {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.datetime{
+  margin: 0;
+}
+/* header */
+.header {
+  background-color: #4a4a4a;
+  color: #dedbd5;
+  margin-bottom: 12px;
+}
+header a {
+  color: white;
+}
+
+.logo {
+  margin-right: 80px;
+}
+
+.menu {
+  display: flex;
+}
+
+.menu li a {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu a:hover {
+    color: #adadad;
+}
+
+.sign {
+  font-size: 17px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+.sign a{
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.sign a:hover{
+    color: #adadad;
+}
+
+.sign h3 {
+    color: #fff;
+    font-size: 16px;
+    margin-left: 5px;
+    margin-right: 10px;
+    text-transform: none;
+}
+
+.logout{
+  color: #dedbd5;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+
+.btn {
+  display: block;
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  padding: 7px 17px;
+  border: 1px solid #fff;
+  width: 60px;
+}
+
+.btn:hover{
+  background-color: white;
+}
+
+/* content block */
+.content{
+  font-size: 18px;
+}
+
+/* short list artiles */
+.article__short {
+    background-color: #cdcfd1;
+    padding: 24px;
+    margin: 24px;
+    border: 1px solid #9d9d9e;
+}
+
+.article__short a {
+    text-decoration: none;
+    color: #424242;
+}
+
+.article__short a:hover {
+    color: #808080;
+}
+
+/* view article */
+
+.article__view {
+  background-color: #cdcfd1;
+  padding: 24px;
+  margin: 24px;
+  margin-bottom: 0px;
+  border: 1px solid #9d9d9e;
+}
+
+.author__article {
+  text-align: right;
+}
+
+.article__view a {
+  color: #424242;
+  text-decoration: none;
+}
+
+.article__create {
+  padding: 42px;
+}
+
+.article__input {
+  resize: none;
+  font-size: 16px;
+}
+
+.article__btn {
+  display: block;
+  font-size: 17px;
+  text-align: center;
+  padding: 7px 17px;
+  border: 1px solid #fff;
+  width: 120px;
+  float: right;
+  margin-right: 30px;
+}
+
+.article__btn:hover {
+  background-color: #dedbd5;
+  color: #000;
+}
+
+/* comments */
+.comments__for__article {
+  margin: 24px;
+  margin-top: 0px;
+  border: none;
+}
+
+.add__comment {
+  background-color: #d6d6d6;
+  padding: 32px;
+  padding-bottom: 40px;
+  border: none;
+  text-align: right;
+}
+
+.add__comment input {
+  display: block;
+  font-size: 17px;
+  text-align: center;
+  padding: 7px 17px;
+  border: 1px solid #fff;
+  width: 120px;
+  float: right;
+}
+
+.comment__input {
+  resize: none;
+}
+
+.comment__view {
+  background-color: #e0e0e0;
+  margin-bottom: 12px;
+  border: none;
+  display: flex;
+  padding: 12px;
+}
+
+.comment__data {
+  margin: 12px;
+  width: 800px;
+}
+
+.comment__data p{
+  padding: 0px;
+  margin: 0px;
+  text-align: top;
+}
+
+.comment__data a {
+  text-decoration: none;
+  font-size: 18px;
+  float: right; 
+  margin-right: 24px;
+  color: #424242;
+}
+
+.ava__nick{
+  text-align: center;
+  color: #424242;
+}
+
+.ava__nick a{
+ color: #424242;
+}
+
+/* profile */
+.profile {
+  background-color: #dbdbdb;
+  padding: 24px;
+  display: flex;
+}
+
+.profile a {
+  color: #424242;
+}
+
+.profile__data {
+  padding-top: 24px;
+  margin: 12px;
+}
+
+.articles__profile {
+  padding: 24px;
+  background-color: #e0e0e0;
+}
+
+.profile__edit {
+  padding: 32px;
+}
+
+.profile__edit h1{
+  padding-bottom: 24px;
+}
+
+.profile__edit textarea{
+  font-size: 16px;
+}
+
+.profile__input {
+  resize: none;
+}
+
+/* login/register */
+.login {
+  text-align: center;
+  padding: 24px;
+  margin: 22px 250px;
+  background-color: #4a4a4a;
+  color: #fff;
+}
+
+.log_btn {
+  font-size: 17px;
+  text-align: center;
+  padding: 7px 17px;
+  border: 1px solid #fff;
+  width: 120px;
+  margin-right: 30px;
+}
+
+.log_btn:hover {
+  background-color: #dedbd5;
+  color: #000;
+}
+
+/* footer */
+.footer-text {
+  font-size: 15px;
+  display: flex;
+  padding-top: 150px;
+}
+
+.footer-text p{
+  margin-left: 250px;
+}
