@@ -8,7 +8,7 @@
             <div class="comment__data">
                 <p class="datetime"><?= $comment->getCreatedAt() ?></p>
                 <br>
-                <p id="comment<?= $comment->getId() ?>"><?= $comment->getText() ?></p>
+                <p id="comment<?= $comment->getId() ?>" class="comment__text"><?= $comment->getText() ?></p>
                 <?php if (isset($user)): ?>
                     <?php if ($user->isAdmin() || $user->getId() === $comment->getAuthor()->getId()): ?>
                         <a href="/comments/<?= $comment->getId() ?>/edit">Редактировать</a>
@@ -19,4 +19,5 @@
         </div>
     <?php endforeach; ?>
     <script src="/js/transform-datetime.js"></script>
+    <script src="/js/load-comments.js"></script>
 <?php endif; ?>

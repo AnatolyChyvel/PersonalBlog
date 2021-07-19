@@ -46,6 +46,11 @@ class Comment extends ActiveRecordEntity
         return User::getById($this->userId);
     }
 
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function getAuthorProfile(): Profile
     {
         return Profile::getProfileByUserId($this->userId);

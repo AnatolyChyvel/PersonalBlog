@@ -10,7 +10,7 @@
 
         var exp = /(\d{4})-(\d\d)-(\d\d)\s(\d\d):(\d\d):(\d\d)/;
         var result = date.match(exp);
-        if(result.length !== 7) continue;
+        if(result === null) continue;
                   
         result.shift();
         var objDate = new Date(...result, 0);
