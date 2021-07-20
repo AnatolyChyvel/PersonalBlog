@@ -18,6 +18,5 @@ return [
     '~^comments/(\d+)/edit$~' => [\MyProject\Controllers\CommentsController::class, 'edit'],
     '~^comments/(\d+)/delete$~' => [\MyProject\Controllers\CommentsController::class, 'delete'],
 
-    '~^admins/articles$~' => [\MyProject\Controllers\AdminsController::class, 'viewNewArticles'],
     '~^admins/comments$~' => [\MyProject\Controllers\AdminsController::class, 'viewNewComments'],
 ];

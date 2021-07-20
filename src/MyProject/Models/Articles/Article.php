@@ -84,6 +84,15 @@ class Article extends ActiveRecordEntity {
         $this->authorId = $author->getId();
     }
 
+    public function delete(int $id): void{
+        $sql = 'DELETE FROM `' . static::getTableName() .'` WHERE id=:id';
+        $db = Db::getInstance();
+        $db->query($sql,[':id' => $id]);
+        $sql = "DELETE FROM `comments` WHERE `comments`.`article_id`=:article_id";
+        $db->query($sql,[':article_id' => $id]);
+        $this->id = null;
+    }
+
     public static function createFromArray(array $fields, User $author): Article
     {
         if(empty($fields['name'])){

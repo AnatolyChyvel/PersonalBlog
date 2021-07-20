@@ -1,7 +1,7 @@
 <?php include __DIR__ . '/../header.php'; ?>
 <div id="<?= $article->getId()?>" class="article__view">
 	    <h1><?= $article->getName() ?></h1>
-	    <p><?= $article->getParsedtext() ?></p>
+	    <p><?= $article->getParsedText() ?></p>
 	    <p class="author__article">Автор: <a href="/users/<?= $article->getAuthor()->getId() ?>/profile"><?= $article->getAuthor()->getNickname() ?></a></p>
 	    <?php include __DIR__ . '/../articles/btnEditAndDelete.php'?>
     </div>

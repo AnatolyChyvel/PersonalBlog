@@ -12,20 +12,6 @@ use MyProject\Models\Users\UsersAuthService;
 
 class AdminsController extends AbstractController
 {
-    public function viewNewArticles()
-    {
-        if(empty($this->user)){
-            throw new UnauthorizedException();
-        }
-
-        if(!$this->user->isAdmin()){
-            throw new ForbiddenException('Только для администраторов');
-        }
-
-        $articles = Article::findAllShortReferences();
-        $articles = $this->sort($articles, 'DESC');
-        $this->view->renderHtml('admins/articles.php', ['articles' => $articles]);
-    }
 
     public function viewNewComments()
     {

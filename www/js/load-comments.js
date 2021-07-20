@@ -3,8 +3,9 @@ function reqReadyStateChange(){
 		var status = request.status;
 		if(status == 200){
 			var data = JSON.parse(request.response);
+
 			var comments = data['comments'][0];
-			var container = document.getElementsByClassName("comments__for__article")[0];
+
 			// собирает индексы всех комментариев на странице
 			let deletedCommentsId = [];
 			for(let objTextComment of objTextComments){
@@ -14,6 +15,7 @@ function reqReadyStateChange(){
 				/* проверяет есть ли такие комментарии на странице */
 				let isFinded = false;
 				for(let j=0; j<countCommentsInPage; j++){
+
 					if(objTextComments[j].getAttribute("id") === "commentText" + comments[i]["id"]){
 						// проверка на изменения текста комментария
 						if(objTextComments[j].innerText != comments[i]["text"]){
@@ -30,6 +32,7 @@ function reqReadyStateChange(){
 
 				// генерирация и добавление элемнтов DOM для отображения нового комментария
 				let commentView = document.createElement("div");
+				commentView.id = "comment" + comments[i]["id"];
 				commentView.className = "comment__view";
 				container.appendChild(commentView);
 
@@ -61,7 +64,7 @@ function reqReadyStateChange(){
 				commentData.appendChild(elemBr);
 
 				let commentText = document.createElement("p");
-				commentText.setAttribute("id", "comment" + comments[i]["id"]);
+				commentText.id = "commentText" + comments[i]["id"];
 				commentText.innerText = comments[i]["text"];
 				commentText.className = "comment__text";
 				commentData.appendChild(commentText);
@@ -84,6 +87,7 @@ function reqReadyStateChange(){
 				let comment = document.getElementById(commentId);
 				container.removeChild(comment);
 			}
+
 			include("/js/transform-datetime.js");
 		}
 	}
@@ -93,7 +97,7 @@ function sendRequest(){
 	countCommentsInPage = objTextComments.length;
 	let body = "countComments=" + countCommentsInPage;
 
-	request.open("POST", "http://mp.loc/api/comments/" + articleId);
+	request.open("POST", url);
 	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	request.onreadystatechange = reqReadyStateChange;
 	request.send(body);	
@@ -102,15 +106,29 @@ function sendRequest(){
 function include(url) {
         var script = document.createElement('script');
         script.src = url;
+        //тут разобраться
         document.getElementsByClassName("comment__view")[0].appendChild(script);
 }
 
 var request = new XMLHttpRequest();
 
+var container;
+
 var objArticle = document.getElementsByClassName("article__view");
-var articleId = objArticle[0].getAttribute("id");
+
+if(objArticle[0] != undefined){
+	//для страницы со статьей
+	var articleId = objArticle[0].getAttribute("id");
+	var url = "http://mp.loc/api/comments/" + articleId;
+	container = document.getElementsByClassName("comments__for__article")[0];
+}
+else{
+	//для страницы админа
+	var url = "http://mp.loc/api/admins/comments";
+	container = document.getElementsByClassName("container")[1];
+}
 
 var objTextComments = document.getElementsByClassName("comment__text");
 var countCommentsInPage = objTextComments.length;
 
-var timerId = setInterval(sendRequest, 10000);
+var timerId = setInterval(sendRequest, 20000);

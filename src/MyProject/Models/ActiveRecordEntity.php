@@ -125,7 +125,8 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         return $this->mapPropertiesToDbFormat();
     }
 
-    protected static function findAllByColumns(array $columns2values): array{
+    protected static function findAllByColumns(array $columns2values): array
+    {
         $columns2params = [];
         $params2value = [];
         foreach ($columns2values as $column => $value) {

@@ -30,11 +30,11 @@ try {
     $controller->$actionName(...$matches);
 } catch (\MyProject\Exceptions\DbException $e) {
     $view = new \MyProject\View\View(__DIR__ . '/../templates/errors');
-    $view->displayJson(['error' => $e->getMessage()], 500);
+    $view->sendJson(['error' => $e->getMessage()], 500);
 } catch (\MyProject\Exceptions\NotFoundException $e) {
     $view = new \MyProject\View\View(__DIR__ . '/../templates/errors');
-    $view->displayJson(['error' => $e->getMessage()], 404);
+    $view->sendJson(['error' => $e->getMessage()], 404);
 } catch (\MyProject\Exceptions\UnauthorizedException $e) {
     $view = new \MyProject\View\View(__DIR__ . '/../templates/errors');
-    $view->displayJson(['error' => $e->getMessage()], 401);
+    $view->sendJson(['error' => $e->getMessage()], 401);
 }
