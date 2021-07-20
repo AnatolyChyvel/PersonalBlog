@@ -5,24 +5,30 @@ function reqReadyStateChange(){
 			var data = JSON.parse(request.response);
 			var comments = data['comments'][0];
 			var container = document.getElementsByClassName("comments__for__article")[0];
-
+			// собирает индексы всех комментариев на странице
+			let deletedCommentsId = [];
+			for(let objTextComment of objTextComments){
+				deletedCommentsId.push(objTextComment.getAttribute("id"));
+			}
 			for(let i=0; i<comments.length; i++){
 				/* проверяет есть ли такие комментарии на странице */
 				let isFinded = false;
-				
-				for(let j=0; j<objComments.length; j++){
-					if(objComments[j].getAttribute("id") === "comment" + comments[i]["id"]){
+				for(let j=0; j<countCommentsInPage; j++){
+					if(objTextComments[j].getAttribute("id") === "commentText" + comments[i]["id"]){
 						// проверка на изменения текста комментария
-						if(objComments[j].innerText != comments[i]["text"]){
-							objComments[j].innerText = comments[i]["text"];
+						if(objTextComments[j].innerText != comments[i]["text"]){
+							objTextComments[j].innerText = comments[i]["text"];
 						}
 						isFinded = true;
+						//удаляет из списка индекс, если комментарий есть на сервере
+						let index = deletedCommentsId.indexOf(objTextComments[j].getAttribute("id"));
+						deletedCommentsId.splice(index,1);
 						break;
 					}						
 				}
 				if(isFinded) continue;
 
-				// генерирация и добавление элемнтов DOM для комментария
+				// генерирация и добавление элемнтов DOM для отображения нового комментария
 				let commentView = document.createElement("div");
 				commentView.className = "comment__view";
 				container.appendChild(commentView);
@@ -72,14 +78,20 @@ function reqReadyStateChange(){
 					commentData.appendChild(linkDelete);
 				}
 			}
+			// удаляет элементы со страницы, которые отсутствуют в ответе сервера
+			for(commentId of deletedCommentsId){
+				commentId = commentId.replace("commentText", "comment");
+				let comment = document.getElementById(commentId);
+				container.removeChild(comment);
+			}
 			include("/js/transform-datetime.js");
 		}
 	}
 }
 
 function sendRequest(){
-	countComments = objComments.length;
-	let body = "countComments=" + countComments;
+	countCommentsInPage = objTextComments.length;
+	let body = "countComments=" + countCommentsInPage;
 
 	request.open("POST", "http://mp.loc/api/comments/" + articleId);
 	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -97,7 +109,8 @@ var request = new XMLHttpRequest();
 
 var objArticle = document.getElementsByClassName("article__view");
 var articleId = objArticle[0].getAttribute("id");
-var objComments = document.getElementsByClassName("comment__text");
-var countComments = objComments.length;
+
+var objTextComments = document.getElementsByClassName("comment__text");
+var countCommentsInPage = objTextComments.length;
 
 var timerId = setInterval(sendRequest, 10000);
